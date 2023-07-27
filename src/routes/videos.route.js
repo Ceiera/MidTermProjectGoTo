@@ -43,6 +43,9 @@ router.get('/:id', async ( req, res ) => {
         if (video === 'error while getting video') {
             res.send(500).send({ status: 'failed', error: 'error while getting video' }) 
         }
+        if (video === 'error video not found') {
+            res.send(404).send({ status: 'failed', error: 'error video not found' }) 
+        }
         res.status(200).send({ status: 'success', data: video })
     } catch (error) {
         res.status(500).send({ status: 'failed', error: error.messages })

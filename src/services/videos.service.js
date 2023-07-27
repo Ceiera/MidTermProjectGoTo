@@ -26,6 +26,9 @@ const getAllVideos = async (limit=10, page=1) => {
 const getVideoById = async (videoId) => {
     try {
         const video = await VideosModel.findById(videoId).find({ softDeleted: false })
+        if (video === null) {
+            return "error video not found"
+        }
         return video
     } catch (error) {
         return 'error while getting video'

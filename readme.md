@@ -4,7 +4,8 @@
 
 * [Database Structure](#database-structure)
 	* [Videos Collection](#videos-collection)
-	* [Comment Collection](#comment-collection)
+  * [Products Collection](#products-collection)
+	* [Comments Collection](#comments-collection)
 * [API Structure](#api-structure)
 * [API Request Response](#api-request-response)
 * [How To Run](#how-to-run-in-local)
@@ -47,6 +48,7 @@ This project have 3 collection. They are videos, products, and comments.
 
 ```
 {
+  _id: ObjectId(String), //default assignment from mongoose
   videoId :  String, //required
   username :  String, //required
   comment :  String, //required
@@ -135,10 +137,11 @@ Return specific video using ID.
 ```
 * **Error Response:**  
   * **Code:** 500  
-  **Content:** `{ status: 'failed', error : "error while getting videos" }`  
-  OR  
+  **Content:** `{ status: 'failed', error : "error while getting videos" }` 
   * **Code:** 400 
   **Content:** `{status: 'failed', error : 'error missing params' }`
+  * **Code:** 404 
+  **Content:** `{status: 'failed', error : 'error video not found' }`
 
 ### POST /videos
 
@@ -177,10 +180,8 @@ Created a new video and return the new video.
 * **Error Response:**  
   * **Code:** 400  
   **Content:** `{ status: 'failed', error : 'error invalid type' }`  
-  OR
   * **Code:** 400  
   **Content:** `{ status: 'failed', error : 'error missing body' }` 
-  OR
   * **Code:** 500  
   **Content:** `{ status: 'failed', error : 'error while adding video' }` 
 
@@ -188,7 +189,7 @@ Created a new video and return the new video.
 ### GET /products/?videoId={:id}
 
 ----
-Return all product that assosiated with video ID.
+Return all product that assosiated with video using videoId.
 * **URL Params**  
   None
 * **Query Params**
@@ -219,15 +220,14 @@ Return all product that assosiated with video ID.
 ```
 * **Error Response:**  
   * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while getting products'}`  
-  OR  
+  **Content:** `{ status: 'failed', error : 'error while getting products'}`
   * **Code:** 400 
   **Content:** `{status: 'failed', error : 'error missing query' }`
 
 ### POST /products
 
 ----
-Return all product that assosiated with video ID.
+Created a new product and return the new product.
 * **URL Params**  
   None
 * **Query Params**
@@ -278,7 +278,7 @@ Return all product that assosiated with video ID.
 ### GET /comments/?videoId={:id}
 
 ----
-Return all comments that assosiated with video ID.
+Return all comments that assosiated with video using videoId.
 * **URL Params**  
   None
 * **Query Params**
@@ -305,15 +305,14 @@ Return all comments that assosiated with video ID.
 ```
 * **Error Response:**  
   * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while getting comments'}`  
-  OR  
+  **Content:** `{ status: 'failed', error : 'error while getting comments'}` 
   * **Code:** 400 
   **Content:** `{status: 'failed', error : 'error missing query' }`
 
-### GET /comments/?videoId={:id}
+### POST /comments/?videoId={:id}
 
 ----
-Return all comments that assosiated with video ID.
+Created a new comment and return the new comment.
 * **URL Params**  
   None
 * **Query Params**
@@ -346,8 +345,7 @@ Return all comments that assosiated with video ID.
 ```
 * **Error Response:**  
   * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while getting comments'}`  
-  OR  
+  **Content:** `{ status: 'failed', error : 'error while getting comments'}` 
   * **Code:** 400 
   **Content:** `{status: 'failed', error : 'error missing body' }`
 
@@ -367,6 +365,7 @@ npm install
 ### Development Server
 Start the development server on http://localhost:3000
 Make sure you dont have problem while connecting Atlas MongoDB
+or You can use your own server and edit the url in .env file
 
 ```
 # npm
