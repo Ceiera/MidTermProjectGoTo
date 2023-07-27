@@ -29,8 +29,9 @@ router.post('/', async ( req, res ) => {
             res.status(400).send({ status: 'failed', error: 'error invalid type' })
         }
         if (product === 'error while adding products') {
-            res.status(500).send({ status: 'failed', error: 'error while adding video' })
+            res.status(500).send({ status: 'failed', error: 'error while adding products' })
         }
+        res.status(200).send({ status: 'success', data: product })
     } catch (error) {
         res.status(500).send({ status: 'failed', error: error.messages })
     }

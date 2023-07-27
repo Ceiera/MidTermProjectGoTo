@@ -62,13 +62,11 @@ Endpoint ready to use
 ```
 GET   /videos
 GET   /videos/:id
-GET   /products?videoId={:id}
-GET   /comments?videoId={:id}
 POST   /videos
+GET   /products?videoId={:id}
 POST   /products
+GET   /comments?videoId={:id}
 POST   /comments
-PUT   /videos
-DELETE   /videos
 ```
 
 ## API Request Response
@@ -142,45 +140,6 @@ Return specific video using ID.
   * **Code:** 400 
   **Content:** `{status: 'failed', error : 'error missing params' }`
 
-### GET /products/?videoId={:id}
-
-----
-Return all product that assosiated with video ID.
-* **URL Params**  
-  None
-* **Query Params**
-  required `videoId: String`
-* **Data Params**  
-  None
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:**  
-* **Code:** 200  
-  **Content:**  
-```
-{
-  status: success,
-  data: [
-          _id,
-          videoId,
-          title,
-          price,
-          discount,
-          imageUrl,
-          productUrl,
-          countSeen,
-          createdAt,
-          softDeleted,
-        ]
-}
-```
-* **Error Response:**  
-  * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while getting products'}`  
-  OR  
-  * **Code:** 400 
-  **Content:** `{status: 'failed', error : 'error missing query' }`
-
 ### POST /videos
 
 ----
@@ -225,6 +184,97 @@ Created a new video and return the new video.
   * **Code:** 500  
   **Content:** `{ status: 'failed', error : 'error while adding video' }` 
 
+
+### GET /products/?videoId={:id}
+
+----
+Return all product that assosiated with video ID.
+* **URL Params**  
+  None
+* **Query Params**
+  required `videoId: String`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  status: success,
+  data: [
+          _id,
+          videoId,
+          title,
+          price,
+          discount,
+          imageUrl,
+          productUrl,
+          countSeen,
+          createdAt,
+          softDeleted,
+        ]
+}
+```
+* **Error Response:**  
+  * **Code:** 500  
+  **Content:** `{ status: 'failed', error : 'error while getting products'}`  
+  OR  
+  * **Code:** 400 
+  **Content:** `{status: 'failed', error : 'error missing query' }`
+
+### POST /products
+
+----
+Return all product that assosiated with video ID.
+* **URL Params**  
+  None
+* **Query Params**
+  None
+* **Data Params**  
+```
+{
+  videoId,
+  title,
+  price,
+  discount,
+  imageUrl, //valid web url
+  productUrl, //valid web url
+}
+```
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  status: success,
+  data: [
+          _id,
+          videoId,
+          title,
+          price,
+          discount,
+          imageUrl, 
+          productUrl, 
+          countSeen,
+          createdAt,
+          softDeleted,
+        ]
+}
+```
+* **Error Response:**  
+  * **Code:** 500  
+  **Content:** `{ status: 'failed', error : 'error while adding products'}`  
+  OR  
+  * **Code:** 400 
+  **Content:** `{status: 'failed', error : 'error missing body' }`
+  OR
+    * **Code:** 400 
+  **Content:** `{status: 'failed', error : 'error invalid type' }`
+
 ### GET /comments/?videoId={:id}
 
 ----
@@ -260,15 +310,22 @@ Return all comments that assosiated with video ID.
   * **Code:** 400 
   **Content:** `{status: 'failed', error : 'error missing query' }`
 
-
-### GET /tokplay
+### GET /comments/?videoId={:id}
 
 ----
-Return all videos from databases.
+Return all comments that assosiated with video ID.
 * **URL Params**  
   None
-* **Data Params**  
+* **Query Params**
   None
+* **Data Params**  
+```
+{
+  videoId,
+  username,
+  comment
+}
+```
 * **Headers**  
   Content-Type: application/json  
 * **Success Response:**  
@@ -276,144 +333,23 @@ Return all videos from databases.
   **Content:**  
 ```
 {
-  result : [
-    {
-      video_id,
-      thumbnail,
-      shop_name,
-      video_title,
-      product : [
-        {
-          nama_produk,
-          harga_produk,
-          thumbnail_produk,
-          link_produk
-        }
-      ]
-    }
-  ]
+  status: success,
+  data: [
+          _id,
+          videoId,
+          username,
+          comment,
+          createdAt,
+          softDeleted,
+        ]
 }
 ```
-
-
-### GET /tokplay/:id
-
-----
-Return videos associated with the specified id.
-* **URL Params**  
-  None
-* **Data Params**  
-  None
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:**  
-* **Code:** 200  
-  **Content:**  
-```
-{
-  result : [
-    {
-      video_id,
-      thumbnail,
-      shop_name,
-      video_title,
-      product : [
-        {
-     	  nama_produk,
-          harga_produk,
-          thumbnail_produk,
-          link_produk
-        }
-      ]
-    }
-  ]
-}
-```
-
-
-### GET /tokplay/product
-
-----
-Return all product from databases.
-* **URL Params**  
-  None
-* **Data Params**  
-  None
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:**  
-* **Code:** 200  
-  **Content:**  
-```
-{
-  result : [
-    [
-      {
-          nama_produk,
-          harga_produk,
-          thumbnail_produk,
-          link_produk
-      }
-    ]
-  ]
-}
-```
-
-
-### GET /tokplay/comment
-
-----
-Return all comment from databases.
-* **URL Params**  
-  None
-* **Data Params**  
-  None
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:**  
-* **Code:** 200  
-  **Content:**  
-```
-{
-  result : [
-    {
-      videoId,
-      username,
-      comment
-    }
-  ]
-}
-```
-
-
-### POST /tokplay/comment/post
-
-----
-Creates a new Comment and returns the new object.
-* **URL Params**  
-  None
-* **Data Params**  
-  ```
-  {
-    videoId :  string
-    username :  string
-    comment :  string
-  }
-  ```
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:**  
-* **Code:** 200  
-  **Content:**  
-```
-{
-  message: "Comment added successfully",
-  data : {
-    username,
-    comment
-  }
-}
-```
+* **Error Response:**  
+  * **Code:** 500  
+  **Content:** `{ status: 'failed', error : 'error while getting comments'}`  
+  OR  
+  * **Code:** 400 
+  **Content:** `{status: 'failed', error : 'error missing body' }`
 
 ## How To Run In Local
 
@@ -423,27 +359,17 @@ This project use Node version 18.16
 
 Make sure to install the dependencies:
 ```
-# yarn
-yarn install
-
 # npm
 npm install
-
-# pnpm
-pnpm install
 
 ```
 
 ### Development Server
 Start the development server on http://localhost:3000
+Make sure you dont have problem while connecting Atlas MongoDB
 
 ```
-# yarn
-yarn start
-
 # npm
 npm start
 
-# pnpm
-pnpm start
 ```
