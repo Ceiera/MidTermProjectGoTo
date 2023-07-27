@@ -79,8 +79,8 @@ POST   /comments
 Return all videos including thumbnail of videos.
 * **URL Params**  
   None
-* **Query Params**
-Optional: 'limit=integer, default=10' and 'page=integer, default=1'
+* **Query Params**  
+  Optional: 'limit=integer, default=10' and 'page=integer, default=1'
 * **Data Params**  
   None
 * **Headers**  
@@ -362,12 +362,11 @@ npm install
 ```
 
 ### Development Server
-Start the development server on http://localhost:3000
-Make sure you dont have problem while connecting Atlas MongoDB
-or You can use your own server and edit the url in .env file
+Start the development server on http://localhost:3000   
+Make sure you dont have problem while connecting Atlas MongoDB  
+or You can use your own database server and edit the url in .env file  
 
 ```
 # npm
 npm start
-
 ```
