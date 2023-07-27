@@ -5,7 +5,7 @@
 * [Database Structure](#database-structure)
 	* [Videos Collection](#videos-collection)
   * [Products Collection](#products-collection)
-	* [Comments Collection](#comments-collection)
+  * [Comments Collection](#comments-collection)
 * [API Structure](#api-structure)
 * [API Request Response](#api-request-response)
 * [How To Run](#how-to-run-in-local)
@@ -104,7 +104,8 @@ Optional: 'limit=integer, default=10' and 'page=integer, default=1'
 ```
 * **Error Response:**  
   * **Code:** 500  
-  **Content:** `{ status: 'failed', error : "error while getting videos" }`  
+  **Content:** `{ status: 'failed', error : "error while getting videos" }`
+
 
 ### GET /videos/:id
 
@@ -137,8 +138,8 @@ Return specific video using ID.
 ```
 * **Error Response:**  
   * **Code:** 500  
-  **Content:** `{ status: 'failed', error : "error while getting videos" }` 
-  * **Code:** 400 
+  **Content:** `{ status: 'failed', error : "error while getting videos" }`
+  * **Code:** 400
   **Content:** `{status: 'failed', error : 'error missing params' }`
   * **Code:** 404 
   **Content:** `{status: 'failed', error : 'error video not found' }`
@@ -178,12 +179,12 @@ Created a new video and return the new video.
 }
 ```
 * **Error Response:**  
-  * **Code:** 400  
-  **Content:** `{ status: 'failed', error : 'error invalid type' }`  
-  * **Code:** 400  
+  * **Code:** 400
+  **Content:** `{ status: 'failed', error : 'error invalid type' }`
+  * **Code:** 400
   **Content:** `{ status: 'failed', error : 'error missing body' }` 
-  * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while adding video' }` 
+  * **Code:** 500
+  **Content:** `{ status: 'failed', error : 'error while adding video' }`
 
 
 ### GET /products/?videoId={:id}
@@ -219,9 +220,9 @@ Return all product that assosiated with video using videoId.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500  
+  * **Code:** 500
   **Content:** `{ status: 'failed', error : 'error while getting products'}`
-  * **Code:** 400 
+  * **Code:** 400
   **Content:** `{status: 'failed', error : 'error missing query' }`
 
 ### POST /products
@@ -266,13 +267,11 @@ Created a new product and return the new product.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while adding products'}`  
-  OR  
+  * **Code:** 500
+  **Content:** `{ status: 'failed', error : 'error while adding products'}`
   * **Code:** 400 
   **Content:** `{status: 'failed', error : 'error missing body' }`
-  OR
-    * **Code:** 400 
+    * **Code:** 400
   **Content:** `{status: 'failed', error : 'error invalid type' }`
 
 ### GET /comments/?videoId={:id}
@@ -304,9 +303,9 @@ Return all comments that assosiated with video using videoId.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while getting comments'}` 
-  * **Code:** 400 
+  * **Code:** 500
+  **Content:** `{ status: 'failed', error : 'error while getting comments'}`
+  * **Code:** 400
   **Content:** `{status: 'failed', error : 'error missing query' }`
 
 ### POST /comments/?videoId={:id}
@@ -344,9 +343,9 @@ Created a new comment and return the new comment.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500  
-  **Content:** `{ status: 'failed', error : 'error while getting comments'}` 
-  * **Code:** 400 
+  * **Code:** 500
+  **Content:** `{ status: 'failed', error : 'error while getting comments'}`
+  * **Code:** 400
   **Content:** `{status: 'failed', error : 'error missing body' }`
 
 ## How To Run In Local
