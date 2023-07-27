@@ -11,6 +11,7 @@ const getProductsByVideoId = async (videoId) => {
 
 const addProduct = async (videoId, title, price, discount=0, imageUrl, productUrl) => {
     try {
+        
         if (isNaN(price) || isNaN(discount)) {
             return 'error invalid type'
         }
@@ -25,6 +26,7 @@ const addProduct = async (videoId, title, price, discount=0, imageUrl, productUr
         const createdProduct = product.save()
         return createdProduct
     } catch (error) {
+        console.log("we here?");
         return 'error while adding products'
     }
 }

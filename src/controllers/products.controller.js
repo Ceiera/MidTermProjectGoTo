@@ -14,7 +14,7 @@ const getProductsByVideoId = async (videoId) => {
 }
 
 const addProduct = async (videoId, title, price, discount, imageUrl, productUrl) => {
-    if(!videoId || !title || !price || !discount || !imageUrl || !productUrl ){
+    if(videoId === null || title === null || price === null || imageUrl === null|| productUrl === null ){
         return 'error missing body'
     }
     if (!validUrl.isWebUri(imageUrl) || !validUrl.isWebUri(productUrl)) {

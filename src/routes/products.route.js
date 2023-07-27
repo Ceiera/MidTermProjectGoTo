@@ -5,7 +5,7 @@ const productsController = require('../controllers/products.controller')
 router.get('/', async ( req, res ) => {
     try {
         const videoId = req.query.videoId
-        const product = await productsController.getProductByVideoId(videoId)
+        const product = await productsController.getProductsByVideoId(videoId)
         if (product === 'error missing query') {
             res.status(400).send({ status: 'failed', error: 'error missing query' })
         }
