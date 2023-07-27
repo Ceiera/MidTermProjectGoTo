@@ -60,37 +60,4 @@ const addVideo =  async (title, videoUrl) => {
     }
 }
 
-const updateVideo = async (videoId, title, videoUrl) => {
-    try {
-        const videoIds = videoUrl.split('v=')[1]
-        const videoUrlThumbnail = getUrlThumbnail(videoId)
-        const updatedAt = Date.now()
-        const data = {
-            title: title, 
-            videoUrl: videoUrl,
-            videoUrlThumbnail: videoUrlThumbnail,
-            updatedAt: updatedAt
-        }
-        console.log(data);
-        const video = await VideosModel.findByIdAndUpdate(videoIds, data, {new:true})
-        return video
-    } catch (error) {
-        return 'error while updating video'
-    }
-}
-
-const deleteVideo = async (videoId) => {
-    try {
-        console.log(videoId);
-        // const video = await VideosModel.updateOne(query,data)
-        // console.log(video);
-        if (video === null) {
-            return 'error video not found'
-        }
-        return video
-    } catch (error) {
-        return 'error while deleting video'
-    }
-}
-
-module.exports = { getAllVideos, getVideoById, getVideosByTitle, addVideo, updateVideo, deleteVideo }
+module.exports = { getAllVideos, getVideoById, getVideosByTitle, addVideo}
