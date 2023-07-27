@@ -80,7 +80,7 @@ Return all videos including thumbnail of videos.
 * **URL Params**  
   None
 * **Query Params**  
-  Optional: 'limit=integer, default=10' and 'page=integer, default=1'
+  Optional: `limit=integer //default=10'` and `page=integer //default=1`
 * **Data Params**  
   None
 * **Headers**  
