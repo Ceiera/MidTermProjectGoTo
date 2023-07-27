@@ -1,33 +1,33 @@
 const VideosServices = require('../services/videos.service')
 const validUrl = require('valid-url')
 
-const viewAllVideos = async ( limit, page ) => {
+const getAllVideos = async ( limit, page ) => {
     try {
-        const video = await VideosServices.viewAllVideos( limit, page )
+        const video = await VideosServices.getAllVideos( limit, page )
         return video
     } catch (error) {
         return 'error while getting video'
     }
 }
 
-const searchVideoById = async (videoId) => {
+const getVideoById = async (videoId) => {
     if(videoId === null){
-        return 'Missing Body'
+        return 'error missing params'
     }
     try {
-        const video = await VideosServices.searchVideoById(videoId)
+        const video = await VideosServices.getVideoById(videoId)
         return video
     } catch (error) {
         return 'error while getting video'
     }
 }
 
-const searchVideoByTitle = async (title, limit, page) => {
+const getVideosByTitle = async (title, limit, page) => {
     if(title === null){
-        return 'Missing Body'
+        return 'error missing body'
     }
     try {
-        const video = await VideosServices.searchVideoByTitle( title, limit, page )
+        const video = await VideosServices.getVideosByTitle( title, limit, page )
         return video
     } catch (error) {
         return 'error while getting video'
@@ -39,7 +39,7 @@ const addVideo =  async (title, videoUrl) => {
         return 'error invalid type'
     }
     if(title === null || videoUrl === null) {
-        return 'Missing Body'
+        return 'error missing body'
     }
     try {
         const video = VideosServices.addVideo(title, videoUrl)
@@ -51,7 +51,7 @@ const addVideo =  async (title, videoUrl) => {
 
 const updateVideo = async (videoId, title, videoUrl) => {
     if(videoId === null || title === null === videoUrl === null){
-        return 'Missing Body'
+        return 'error missing body'
     }
     if(!validUrl.isWebUri(videoUrl)){
         return 'error invalid type'
@@ -66,7 +66,7 @@ const updateVideo = async (videoId, title, videoUrl) => {
 
 const deleteVideo = async (videoId) => {
     if(videoId === null){
-        return 'Missing Body'
+        return 'error missing params'
     }
     try {
         const video = await VideosServices.deleteVideo(videoId)
@@ -79,4 +79,4 @@ const deleteVideo = async (videoId) => {
     }
 }
 
-module.exports = { viewAllVideos, searchVideoById, searchVideoByTitle, addVideo, updateVideo, deleteVideo }
+module.exports = { getAllVideos, getVideoById, getVideosByTitle, addVideo, updateVideo, deleteVideo }

@@ -1,4 +1,5 @@
 const VideosModel = require('../models/videos.model')
+const mongoose = require("mongoose")
 
 const getUrlThumbnail = (videoUrlThumbnail) => {
     return [
@@ -7,7 +8,7 @@ const getUrlThumbnail = (videoUrlThumbnail) => {
             ]
 }
 
-const viewAllVideos = async (limit=10, page=1) => {
+const getAllVideos = async (limit=10, page=1) => {
     try {
         if (isNaN(limit) || isNaN(page)){
             return 'error invalid type'
@@ -22,16 +23,16 @@ const viewAllVideos = async (limit=10, page=1) => {
     }
 }
 
-const searchVideoById = async (videoId) => {
+const getVideoById = async (videoId) => {
     try {
-        const video = await VideosModel.findById(videoId)
+        const video = await VideosModel.findById(videoId).find({ softDeleted: false })
         return video
     } catch (error) {
         return 'error while getting video'
     }
 }
 
-const searchVideoByTitle = async (title, limit = 10, page = 1) => {
+const getVideosByTitle = async (title, limit = 10, page = 1) => {
     try {
         const video = await VideosModel.find({title: title}).skip((page-1)*limit).limit(limit)
         if (video === null) {
@@ -61,7 +62,7 @@ const addVideo =  async (title, videoUrl) => {
 
 const updateVideo = async (videoId, title, videoUrl) => {
     try {
-        const videoId = videoUrl.split('v=')[1]
+        const videoIds = videoUrl.split('v=')[1]
         const videoUrlThumbnail = getUrlThumbnail(videoId)
         const updatedAt = Date.now()
         const data = {
@@ -70,7 +71,8 @@ const updateVideo = async (videoId, title, videoUrl) => {
             videoUrlThumbnail: videoUrlThumbnail,
             updatedAt: updatedAt
         }
-        const video = await VideosModel.findByIdAndUpdate(videoId, data)
+        console.log(data);
+        const video = await VideosModel.findByIdAndUpdate(videoIds, data, {new:true})
         return video
     } catch (error) {
         return 'error while updating video'
@@ -79,7 +81,9 @@ const updateVideo = async (videoId, title, videoUrl) => {
 
 const deleteVideo = async (videoId) => {
     try {
-        const video = await VideosModel.findByIdAndUpdate(videoId, { updatedAt: Date.now(), softDeleted: true })
+        console.log(videoId);
+        // const video = await VideosModel.updateOne(query,data)
+        // console.log(video);
         if (video === null) {
             return 'error video not found'
         }
@@ -89,4 +93,4 @@ const deleteVideo = async (videoId) => {
     }
 }
 
-module.exports = { viewAllVideos, searchVideoById, searchVideoByTitle, addVideo, updateVideo, deleteVideo }
+module.exports = { getAllVideos, getVideoById, getVideosByTitle, addVideo, updateVideo, deleteVideo }

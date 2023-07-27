@@ -2,7 +2,9 @@ require('dotenv').config()
 const express = require("express")
 const mongoose = require('mongoose')
 const mongoString = process.env.DATABASE_URL
-const videoRoutes = require('./routes/videos.route')
+const videoRoutes = require('./src/routes/videos.route')
+const productRoutes = require('./src/routes/products.route')
+const commentRoutes = require('./src/routes/comments.route')
 
 mongoose.connect(mongoString)
 const db = mongoose.connection;
@@ -17,9 +19,12 @@ db.once('connected', () => {
 const app = express()
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }));
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: false }))
+
 app.use('/videos', videoRoutes)
+app.use('/products', productRoutes)
+app.use('/comments', commentRoutes)
+
 const listener = app.listen(3000, function () {
   console.log("Listening on port " + listener.address().port)
 });
