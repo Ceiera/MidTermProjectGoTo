@@ -139,9 +139,9 @@ Return specific video using ID.
 * **Error Response:**  
   * **Code:** 500  
   **Content:** `{ status: 'failed', error : "error while getting videos" }`
-  * **Code:** 400
+  * **Code:** 400   
   **Content:** `{status: 'failed', error : 'error missing params' }`
-  * **Code:** 404 
+  * **Code:** 404   
   **Content:** `{status: 'failed', error : 'error video not found' }`
 
 ### POST /videos
@@ -179,11 +179,11 @@ Created a new video and return the new video.
 }
 ```
 * **Error Response:**  
-  * **Code:** 400
+  * **Code:** 400   
   **Content:** `{ status: 'failed', error : 'error invalid type' }`
-  * **Code:** 400
+  * **Code:** 400   
   **Content:** `{ status: 'failed', error : 'error missing body' }` 
-  * **Code:** 500
+  * **Code:** 500   
   **Content:** `{ status: 'failed', error : 'error while adding video' }`
 
 
@@ -220,9 +220,9 @@ Return all product that assosiated with video using videoId.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500
+  * **Code:** 500   
   **Content:** `{ status: 'failed', error : 'error while getting products'}`
-  * **Code:** 400
+  * **Code:** 400   
   **Content:** `{status: 'failed', error : 'error missing query' }`
 
 ### POST /products
@@ -267,11 +267,11 @@ Created a new product and return the new product.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500
+  * **Code:** 500   
   **Content:** `{ status: 'failed', error : 'error while adding products'}`
-  * **Code:** 400 
+  * **Code:** 400   
   **Content:** `{status: 'failed', error : 'error missing body' }`
-    * **Code:** 400
+  * **Code:** 400   
   **Content:** `{status: 'failed', error : 'error invalid type' }`
 
 ### GET /comments/?videoId={:id}
@@ -303,9 +303,9 @@ Return all comments that assosiated with video using videoId.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500
+  * **Code:** 500   
   **Content:** `{ status: 'failed', error : 'error while getting comments'}`
-  * **Code:** 400
+  * **Code:** 400   
   **Content:** `{status: 'failed', error : 'error missing query' }`
 
 ### POST /comments/?videoId={:id}
@@ -343,9 +343,9 @@ Created a new comment and return the new comment.
 }
 ```
 * **Error Response:**  
-  * **Code:** 500
+  * **Code:** 500   
   **Content:** `{ status: 'failed', error : 'error while getting comments'}`
-  * **Code:** 400
+  * **Code:** 400   
   **Content:** `{status: 'failed', error : 'error missing body' }`
 
 ## How To Run In Local
