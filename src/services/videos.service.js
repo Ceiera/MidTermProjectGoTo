@@ -35,9 +35,10 @@ const getVideoById = async (videoId) => {
     }
 }
 
-const getVideosByTitle = async (title, limit = 10, page = 1) => {
+const getVideosByTitle = async (titles) => {
     try {
-        const video = await VideosModel.find({title: title}).skip((page-1)*limit).limit(limit)
+        console.log(titles);
+        const video = await VideosModel.find({title: {$regex: titles, $options: 'i'}, softDeleted: false})
         if (video === null) {
             return "Video not Found"
         }

@@ -33,6 +33,25 @@ router.post('/', async ( req, res ) => {
     }
 })
 
+router.get('/title/:title', async ( req, res ) => {
+    try {
+        const title = req.params.title
+        const video = await videosController.getVideosByTitle(title)
+        if (video === 'error missing params') {
+            res.send(400).send({ status: 'failed', error: 'error missing params' }) 
+        }
+        if (video === 'error while getting video') {
+            res.send(500).send({ status: 'failed', error: 'error while getting video' }) 
+        }
+        if (video === 'error video not found') {
+            res.send(404).send({ status: 'failed', error: 'error video not found' }) 
+        }
+        res.status(200).send({ status: 'success', data: video })
+    } catch (error) {
+        res.status(500).send({ status: 'failed', error: error.messages })
+    }
+})
+
 router.get('/:id', async ( req, res ) => {
     try {
         const videoId = req.params.id
@@ -52,5 +71,6 @@ router.get('/:id', async ( req, res ) => {
     }
 
 })
+
 
 module.exports = router
