@@ -27,6 +27,6 @@ app.use("/videos", videoRoutes);
 app.use("/products", productRoutes);
 app.use("/comments", commentRoutes);
 
-const listener = app.listen(3000, function () {
+const listener = app.listen(80, function () {
   console.log("Listening on port " + listener.address().port);
 });
