@@ -20,6 +20,7 @@ router.get('/', async ( req, res ) => {
 
 router.post('/', async (req, res) => {
     try {
+        console.log(req.body);
         const { videoId, username, comment } = req.body
         const createComment = await commentsController.addComment(videoId, username, comment)
         if (createComment === 'error missing body') {
