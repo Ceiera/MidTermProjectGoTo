@@ -1,7 +1,7 @@
 const commentsServices = require('../services/comments.service')
 
 const getCommentsByVideoId = async (videoId) => {
-    if (videoId === null) {
+    if (videoId === undefined) {
         return 'error missing query'
     }
     try {    

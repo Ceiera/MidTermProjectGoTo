@@ -2,7 +2,7 @@ const productsServices = require('../services/products.service')
 const validUrl = require('valid-url')
 
 const getProductsByVideoId = async (videoId) => {
-    if (videoId === null) {
+    if (videoId === undefined) {
         return 'error missing query'
     }
     try {    

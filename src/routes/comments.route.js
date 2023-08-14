@@ -12,7 +12,7 @@ router.get('/', async ( req, res ) => {
         if (comments === 'error while getting comments') {
             res.status(500).send({ status: 'failed', error: 'error while getting comments' })
         }
-        res.status(200).send(comments)
+        res.status(200).send({status:'success', data: comments})
     } catch (error) {
         res.status(500).send({ status: 'failed', error: error.messages })
     }
