@@ -13,6 +13,7 @@ const getCommentsByVideoId = async (videoId) => {
 }
 
 const addComment = async (videoId, username, comment) => {
+    console.log(videoId, username, comment)
     if (!videoId || !username || !comment) {
         return 'error missing body'
     }
